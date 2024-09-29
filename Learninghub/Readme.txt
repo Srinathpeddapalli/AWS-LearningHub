@@ -1,3 +1,1 @@
-course-details
-trainers
-test.html
+The "Learning Hub" project develops a scalable corporate training platform, utilizing Flask for backend development and AWS EC2 for hosting. The platform ensures high availability and performance, supporting a growing user base. Amazon RDS manages the database, storing course details and tracking user progress. By leveraging AWS services, the platform offers flexibility, scalability, and secure content delivery. This cloud-native solution demonstrates how AWS can streamline course management, user interactions, and content delivery in a seamless and efficient manner.
