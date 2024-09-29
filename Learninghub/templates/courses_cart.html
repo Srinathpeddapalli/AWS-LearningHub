@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Courses</title>
+    <meta name="description" content="Explore various professional courses to enhance your skills.">
+    <meta name="keywords" content="web development, data analytics, AI, machine learning">
+
+    <!-- Fonts and CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="courses-page">
+
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container-fluid container-xl d-flex align-items-center">
+            <a href="{{ url_for('index') }}" class="logo d-flex align-items-center me-auto">
+                <h1 class="sitename">Learning Hub</h1>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <!-- Add navigation links here -->
+                </ul>
+            </nav>
+            <a class="btn-getstarted" href="{{ url_for('index') }}">Logout</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Page Title -->
+       <!-- Page Title -->
+       <div class="page-title" data-aos="fade">
+        <div class="heading">
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <h1>Courses</h1>
+                        <p class="mb-0">Discover a variety of professional courses that enhance your skills in web development, data analytics, AI/ML, and beyond. Designed for corporate professionals, our courses offer practical insights and hands-on experience. Begin your journey now and unlock new career paths.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li class="current">Courses</li>
+                </ol>
+            </div>
+        </nav>
+    </div><!-- End Page Title -->
+
+        <!-- Courses Section -->
+        <section id="courses" class="courses section">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Web Development Course -->
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="course-item">
+                            <img src="../static/assets/img/Web Development.jpg" class="img-fluid" alt="Web Development">
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="category">Web Development</p>
+                                    <p class="price">$99</p>
+                                </div>
+                                <h3><a href="#">Website Design</a></h3>
+                                <p>HTML, CSS, Front-end, Back-end, Framework-Flask and Database-MySQL</p>
+                                <button class="btn-getstarted" onclick="addToCart('Website Design', 99)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Analytics Course -->
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="course-item">
+                            <img src="../static/assets/img/26371389ebabd0424e8a482b8e2f4b4f.jpg" class="img-fluid" alt="Data Analytics">
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="category">Data Analytics</p>
+                                    <p class="price">$129</p>
+                                </div>
+                                <h3><a href="#">PowerBi</a></h3>
+                                <p>Power Query, Data Modelling, DAX, Visualization</p>
+                                <button class="btn-getstarted" onclick="addToCart('PowerBi', 129)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI/ML Course -->
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="course-item">
+                            <img src="../static/assets/img/1.jpg" class="img-fluid" alt="AI/ML">
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <p class="category">AI/ML</p>
+                                    <p class="price">$149</p>
+                                </div>
+                                <h3><a href="#">Machine Learning & Deep Learning</a></h3>
+                                <p>Supervised Learning, Neural Networks, Deep Learning.</p>
+                                <button class="btn-getstarted" onclick="addToCart('Machine Learning', 149)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('cart') }}" class="btn btn-success">Go to Cart</a>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript to add items to cart -->
+    <script>
+        function addToCart(courseName, coursePrice) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Add course to cart
+            const course = { name: courseName, price: coursePrice };
+            cart.push(course);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${courseName} has been added to the cart.`);
+        }
+    </script>
+
+</body>
+</html>
