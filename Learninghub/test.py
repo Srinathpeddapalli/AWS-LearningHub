@@ -155,68 +155,68 @@ def courses_cart():
 
 
 
-# @app.route('/cart')
-# def cart():
-#     user_id = session.get('user_id')
+@app.route('/cart')
+def cart():
+    user_id = session.get('user_id')
 
-#     if not user_id:
-#         flash('Please log in to view your cart.', 'error')
-#         return redirect(url_for('login'))  # Redirect to login if no user session
+    if not user_id:
+        flash('Please log in to view your cart.', 'error')
+        return redirect(url_for('login'))  # Redirect to login if no user session
 
-#     connection = get_db_connection()
-#     if connection:
-#         cursor = connection.cursor()
-#         try:
-#             cursor.execute("""
-#                 SELECT courses.name 
-#                 FROM cart 
-#                 JOIN courses ON cart.course_id = courses.id 
-#                 WHERE cart.user_id = %s
-#             """, (user_id,))
-#             courses = [course[0] for course in cursor.fetchall()]
+    connection = get_db_connection()
+    if connection:
+        cursor = connection.cursor()
+        try:
+            cursor.execute("""
+                SELECT courses.name 
+                FROM cart 
+                JOIN courses ON cart.course_id = courses.id 
+                WHERE cart.user_id = %s
+            """, (user_id,))
+            courses = [course[0] for course in cursor.fetchall()]
 
-#             return render_template('cart.html', courses=courses)
-#         except Exception as e:
-#             flash('Error fetching cart items. Please try again.', 'error')
-#             logging.error(f"Error: {e}")
-#             return redirect(url_for('index'))
-#         finally:
-#             cursor.close()
-#             connection.close()
-#     return render_template('cart.html', courses=[])  # Return an empty cart if no connection
+            return render_template('cart.html', courses=courses)
+        except Exception as e:
+            flash('Error fetching cart items. Please try again.', 'error')
+            logging.error(f"Error: {e}")
+            return redirect(url_for('index'))
+        finally:
+            cursor.close()
+            connection.close()
+    return render_template('cart.html', courses=[])  # Return an empty cart if no connection
 
 
-# @app.route('/thanks', methods=['POST'])
-# def thanks():
-#     card_number = request.form['cardNumber']
-#     expiry_date = request.form['expiryDate']
-#     cvv = request.form['cvv']
+@app.route('/thanks', methods=['POST'])
+def thanks():
+    card_number = request.form['cardNumber']
+    expiry_date = request.form['expiryDate']
+    cvv = request.form['cvv']
     
-#     # Normally, process the payment here (this is a placeholder)
+    # Normally, process the payment here (this is a placeholder)
     
-#     user_id = session.get('user_id')  # Retrieve the user ID from the session
-#     connection = get_db_connection()
+    user_id = session.get('user_id')  # Retrieve the user ID from the session
+    connection = get_db_connection()
     
-#     if connection:
-#         cursor = connection.cursor()
-#         try:
-#             # Fetch purchased courses for the user
-#             cursor.execute("""
-#                 SELECT courses.name 
-#                 FROM cart 
-#                 JOIN courses ON cart.course_id = courses.id 
-#                 WHERE cart.user_id = %s
-#             """, (user_id,))
-#             courses = [course[0] for course in cursor.fetchall()]
+    if connection:
+        cursor = connection.cursor()
+        try:
+            # Fetch purchased courses for the user
+            cursor.execute("""
+                SELECT courses.name 
+                FROM cart 
+                JOIN courses ON cart.course_id = courses.id 
+                WHERE cart.user_id = %s
+            """, (user_id,))
+            courses = [course[0] for course in cursor.fetchall()]
 
-#             return render_template('thanks.html', courses=', '.join(courses))
-#         except Exception as e:
-#             flash('Error processing your order. Please try again.', 'error')
-#             logging.error(f"Error: {e}")
-#             return redirect(url_for('index'))
-#         finally:
-#             cursor.close()
-#             connection.close()
+            return render_template('thanks.html', courses=', '.join(courses))
+        except Exception as e:
+            flash('Error processing your order. Please try again.', 'error')
+            logging.error(f"Error: {e}")
+            return redirect(url_for('index'))
+        finally:
+            cursor.close()
+            connection.close()
 
 @app.route('/logout')
 def logout():
